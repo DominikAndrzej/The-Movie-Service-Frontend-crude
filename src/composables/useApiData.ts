@@ -32,27 +32,16 @@ export function useApiData() {
         }
     };
 
-    const loadGenres = async () => {
-        loading.value.genres = true;
-        try {
-            genres.value = await apiService.getGenres();
-        } finally {
-            loading.value.genres = false;
-        }
-    };
-
     const loadAllData = async () => {
         return Promise.allSettled([
             loadMovies(),
             loadSeries(),
-            loadGenres()
         ]);
     };
 
     return {
         movies,
         series,
-        genres,
         loading,
         loadAllData
     };
